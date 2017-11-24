@@ -1,0 +1,16 @@
+
+
+FROM spacemacs/emacs25:develop
+
+LABEL maintainer "Matt Tyler <me@matthewtyler.io>"
+
+RUN apt-get update \
+    && apt-get install \
+	dstat \
+	&& rm -rf /var/lib/apt/lists/*
+
+COPY .spacemacs "${UHOME}/.spacemacs"
+COPY private "${UHOME}/.emacs.d/private"
+
+RUN install-deps
+
